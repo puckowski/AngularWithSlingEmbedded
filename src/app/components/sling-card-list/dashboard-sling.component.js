@@ -1,4 +1,4 @@
-import { detectChanges, markup, textNode } from '../../../../node_modules/slingjs/sling.min';
+import { detectChanges, markup, textNode, setDetectionStrategy } from '../../../../node_modules/slingjs/sling.min';
 
 class DashboardSlingComponent {
 
@@ -19,6 +19,7 @@ class DashboardSlingComponent {
 
     slOnInit() {
         window.addEventListener('resize', this.determineIfWindowWidthSmall.bind(this), true);
+        setDetectionStrategy(s.CHANGE_STRATEGY_MANUAL);
     }
 
     slAfterInit() {
@@ -45,6 +46,7 @@ class DashboardSlingComponent {
 
     incrementLikesForCard(cardMetadata) {
         cardMetadata.likeCount++;
+        detectChanges('root-slingjs');
     }
 
     view() {
